@@ -10,4 +10,8 @@ Zoom-in for images.
 - Super high resolution screen or image already big enough? Forces to a fallback scaling ratio
 - AND SUPER COOL ZOOM-IN ANIMATION. IT JUST MAKES SENSE.
 
+Caveats:
+
+- No mobile support. Just for desktop usage. At least for now.
+
 jd because I was listening to Joy Division when I thought about the name.
