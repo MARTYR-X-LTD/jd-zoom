@@ -12,6 +12,6 @@ Zoom-in for images.
 
 Caveats:
 
-- No mobile support. Just for desktop usage. At least for now.
+- No mobile support. Only desktop. At least for now.
 
 jd because I was listening to Joy Division when I thought about the name.
