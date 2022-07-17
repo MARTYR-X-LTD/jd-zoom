@@ -6,8 +6,8 @@ Zoom-in for images.
 - No bullshit in the DOM. Just your image and a container.
 - Plain old scale and translate.
 - Because of that, it is smooth af.
-- Scales the image to 100%, display scaling aware
-- Super high resolution screen or image already big enough? Forces to a fallback scaling ratio
+- Scales the image to 100%, display scaling aware. Crisp images as they should.
+- Super high resolution screen or image already big enough? Forces to a fallback scaling ratio.
 - AND SUPER COOL ZOOM-IN ANIMATION. IT JUST MAKES SENSE.
 
 Caveats:
