@@ -12,6 +12,6 @@ Zoom-in for images.
 
 Caveats:
 
-- No mobile support. Only desktop. At least for now.
+- No mobile support. Only desktop. At least for now. I may have to use [hammer.js](https://hammerjs.github.io/) to make it work.
 
 jd because I was listening to Joy Division when I thought about the name.
