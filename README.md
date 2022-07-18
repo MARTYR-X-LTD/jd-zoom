@@ -10,6 +10,10 @@ Zoom-in for images.
 - Super high resolution screen or image already big enough? Forces to a fallback scaling ratio.
 - WITH A COOL ZOOM-IN ANIMATION THAT MAKES SENSE.
 
+TODO: 
+
+ - Code cleanup
+
 Caveats:
 
 - No mobile support. Only desktop. At least for now. I may have to use [hammer.js](https://hammerjs.github.io/) to make it work.
