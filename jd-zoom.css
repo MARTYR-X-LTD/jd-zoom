@@ -1,0 +1,14 @@
+[jd-zoom] {
+  overflow: hidden;
+  position: relative; 
+}
+
+[jd-zoom].on-zoom-in {
+  cursor: zoom-out;
+}
+
+img[jd-zoom-image] {
+  cursor: zoom-in;
+  transform-origin: center;
+  transition: .2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
