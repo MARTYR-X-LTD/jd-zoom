@@ -22,6 +22,12 @@ jd because I was listening to Joy Division when I thought about the name.
 
 ## How to use it
 
+Include the stylesheet in the `head`, or copy it to your .css
+
+```html
+<link rel="stylesheet" href="jd-zoom.css">
+```
+
 Place the attribute `jd-zoom` in a simple container for the image. And the attribute `jd-zoom-image` for the image to be zoomed.
 
 ```html

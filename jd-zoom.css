@@ -3,7 +3,8 @@
   position: relative; 
 }
 
-[jd-zoom].on-zoom-in {
+[jd-zoom].on-zoom-in,
+[jd-zoom].on-zoom-in img[jd-zoom-image] {
   cursor: zoom-out;
 }
 
