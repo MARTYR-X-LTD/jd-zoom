@@ -59,8 +59,10 @@ for (const element of jdZoomContainers) {
 )
 ```
 
-As you can see, it also listens for `scroll` and `resize` window events, so it will zoom-out the image if these events happen. Feel free to change any of these to your needs.
+## Tips
 
-If there's a change in the size or position of the elements while the zoom effect is active, it won't dynamically update. The user needs to zoom-out and zoom-in again to recalculate the values. This is a extremely specific use-case which I don't really know how it could even work from a UX perspective, but you can make it dynamic if you wish. The function `calculateConstants()` should be called inside `moveImg()` for it to work. Beware of possible performance hits.
+- As you can see, it also listens for `scroll` and `resize` window events, so it will zoom-out the image if these events happen. Feel free to change any of these to your needs.
 
+- If there's a change in the size or position of the elements while the zoom effect is active, it won't dynamically update. The user needs to zoom-out and zoom-in again to recalculate the values. This is a extremely specific use-case which I don't really know how it could even work from a UX perspective, but you can make it dynamic if you wish. The function `calculateConstants()` should be called inside `moveImg()` for it to work. Beware of possible performance hits.
 
+- In `jd-zoom.css` you can comment out the line `overflow: hidden` to set the zoom effect free from the boundaries of the container. It can look cool. I use it in [martyr—](https://martyr.shop/products/torn-paper-definitive) 🙃
