@@ -104,35 +104,37 @@ function jdZoomOutEvent(e) {
 
 function jdZoomEnabler(element) {
   element.addEventListener("click", e => {
-    element.classList.toggle("on-zoom-in")
     if (element.classList.contains("on-zoom-in")) {
-      // Calculations here, assuming the DOM won't change size
-      // while the image is being zoomed-in.
-      // A listener to a window resize event to remove
-      // jd-zoom from the image could be handy.
-      // to make it dynamic relative to the DOM,
-      // calculateConstants should be executed inside moveImg()
-      element.imgConstants = calculateConstants(element)
-      element.jdZoomActive = true
-
-      // initial animation from click and then the event
-      // will handle it
-      moveImg(e)
-      element.addEventListener('mousemove', moveImg)
-      element.addEventListener('mouseleave', jdZoomOutEvent)
-
-      // timeout to get rid of transition while moving the cursor
-      // looks so bad, none of the hacky ways tried work anyway
-      // best thing is to just set the transition to a reasonable time
-      // and similar to this easing: cubic-bezier(0.22, 0.61, 0.36, 1);
-      /*
-      setTimeout(function(){
-        element.querySelector("img[jd-zoom-image]").style.transition = '.2s';
-      }, 200)
-      */
-    }
-    else {
       jdZoomOut(element)
+    } 
+    else {
+      if (e.target.hasAttribute('jd-zoom-image')) {
+        element.classList.add("on-zoom-in")
+        // Calculations here, assuming the DOM won't change size
+        // while the image is being zoomed-in.
+        // A listener to a window resize event to remove
+        // jd-zoom from the image could be handy.
+        // to make it dynamic relative to the DOM,
+        // calculateConstants should be executed inside moveImg()
+        element.imgConstants = calculateConstants(element)
+        element.jdZoomActive = true
+
+        // initial animation from click and then the event
+        // will handle it
+        moveImg(e)
+        element.addEventListener('mousemove', moveImg)
+        element.addEventListener('mouseleave', jdZoomOutEvent)
+
+        // timeout to get rid of transition while moving the cursor
+        // looks so bad, none of the hacky ways tried work anyway
+        // best thing is to just set the transition to a reasonable time
+        // and similar to this easing: cubic-bezier(0.22, 0.61, 0.36, 1);
+        /*
+        setTimeout(function(){
+          element.querySelector("img[jd-zoom-image]").style.transition = '.2s';
+        }, 200)
+        */
+      }
     }
   })
 }
