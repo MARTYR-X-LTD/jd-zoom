@@ -40,10 +40,40 @@ function calculateConstants(element) {
   const img_width_r = getImgSizeInfo(imgZoom).width
   const img_height_r = getImgSizeInfo(imgZoom).height
 
+  // 100 = extra pixels that I want the image to be able to exceed the window width
+  const max_width_render = (window.innerWidth * window.devicePixelRatio) + 600
+  let compensation_max_width = max_width_render / img_width
+
+  const max_height_render = (window.innerHeight * window.devicePixelRatio) + 800
+  let compensation_max_height = max_height_render / img_height
+
+  // compensation will always try to make the image to scale
+  // to the width of the screen (plus 100px), no matter if the image is smaller or bigger
+  // if the image is smaller than the width of the screen, ignore it
+  if (compensation_max_width > 1) {
+    compensation_max_width = 1
+  }
+
+  if (compensation_max_height > 1) {
+    compensation_max_height = 1
+  }
+
+  let compensation_max
+
+  if (compensation_max_height <= compensation_max_width) {
+    compensation_max = compensation_max_height
+  } else {
+    compensation_max = compensation_max_width
+  }
+
   // calculate the scale to display it at full res
-  let scaleImage = img_width / img_width_r * scaleBrowser
-  if (scaleImage < 1.5) {
-    scaleImage = 1.5
+  // scale at 100% image → let scaleImage = img_width / img_width_r * scaleBrowser
+  let scaleImage = img_width / img_width_r * scaleBrowser * compensation_max
+  
+  // if scaleImage results in a small number (very high resolution/DPI),
+  // or image has a small resolution, force a minimum scaling
+  if (scaleImage < 1.4) {
+    scaleImage = 1.4
   }
 
   // consider padding and margins from the image
@@ -59,6 +89,10 @@ function calculateConstants(element) {
   // all the sides will be simetric and equal in size nonetheless
   const extraWidth = imgZoom.padLeft + imgZoom.padRight + imgZoom.marginLeft + imgZoom.marginRight
   const extraHeight = imgZoom.padTop + imgZoom.padBottom + imgZoom.marginTop + imgZoom.marginBottom
+
+  // extra padding in px when zoom-in. Sometimes adding padding via CSS is messy.
+  extraWidth += 50
+  extraHeight += 50
 
   return {
     extraWidth: extraWidth,
@@ -85,7 +119,13 @@ function moveImg(e) {
   // 0.5 needed because transform-origin is at the center
   const posX_img = (xP - 0.5) * ((-v.imgWidthRender - v.extraWidth) * v.scaleImage + bounds.width)
   const posY_img = (yP - 0.5) * ((-v.imgHeightRender - v.extraHeight) * v.scaleImage + bounds.height)
-  imgZoom.style.transform = `translate(${posX_img}px, ${posY_img}px) scale(${v.scaleImage})`
+  if (needForRAF) {
+    needForRAF = false;   // no need to call rAF up until next frame
+    window.requestAnimationFrame(function() {
+      needForRAF = true;  // rAF now consumes the movement instruction so a new one can come
+      imgZoom.style.transform = `translate(${posX_img}px, ${posY_img}px) scale(${v.scaleImage})`
+    }); // request 60fps animation
+  }; 
 }
 
 function jdZoomOut(element) {

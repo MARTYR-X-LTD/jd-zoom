@@ -2,17 +2,26 @@
 
 Zoom-in for images.
 
+## Demo
+
+Look [here](https://martyr.shop/products/torn-paper-definitive) and [here](https://martyr.shop/products/dust-2)
+
+Cool, uh? 😎 
+
+## Features
+
 - Simple
+- AN AWESOME ZOOM-IN ANIMATION THAT MAKES SENSE.
 - Minimal DOM requirements. Just your image and a container.
 - Relies on CSS transform functions — scale and translate.
 - Because of that, it is smooth af.
-- Scales the image to 100% their resolution, display scaling aware. Crisp images as they should.
-- Super high resolution screen or image already big enough? Forces to a fallback scaling ratio.
-- WITH A COOL ZOOM-IN ANIMATION THAT MAKES SENSE.
+- Scales the image up to 100% their resolution, display scaling aware. Depends on the window width and height. Change that part of the code if you need a different behaviour.
+- Super high resolution screen or image already big enough? Forces the image to upscale to a fallback amount (x1.4 default).
 
-Caveats:
+### Caveats
 
 - No mobile support. Only desktop. At least for now. I may have to use [hammer.js](https://hammerjs.github.io/) to make it work.
+- No configuration. Change parts of the code to suit your need. It should be pretty straightforward anyways, as the code is well commented
 
 jd because I was listening to Joy Division when I thought about the name.
 
@@ -58,6 +67,10 @@ for (const element of jdZoomContainers) {
   })
 )
 ```
+
+## Configuration
+
+No configuration available for now. Code is well documented and simple enough that making changes should be easy.
 
 ## Tips
 

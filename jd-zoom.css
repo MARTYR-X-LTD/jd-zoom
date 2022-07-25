@@ -6,10 +6,17 @@
 [jd-zoom].on-zoom-in,
 [jd-zoom].on-zoom-in img[jd-zoom-image] {
   cursor: zoom-out;
+  /* change z-index if necessary */
+  z-index: 1
 }
 
 img[jd-zoom-image] {
   cursor: zoom-in;
   transform-origin: center;
   transition: .2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+img[jd-zoom-image]:hover {
+  /* browser optimizations to get rid of possible stutters */
+  will-change: transform;
 }
