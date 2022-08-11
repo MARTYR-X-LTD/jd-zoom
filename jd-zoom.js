@@ -129,12 +129,13 @@ function moveImg(e) {
 }
 
 function jdZoomOut(element) {
-  if (element.jdZoomActive) {
-    element.removeEventListener('mousemove', moveImg)
-    element.removeEventListener('mouseleave', jdZoomOut)
-    element.classList.remove("on-zoom-in")
+  element.removeEventListener('mouseleave', jdZoomOut)
+  element.removeEventListener('mousemove', moveImg)
+  element.classList.remove("on-zoom-in")
+  element.jdZoomActive = false
+  window.requestAnimationFrame(function() {
     element.querySelector("img[jd-zoom-image]").style.transform = null
-  }
+  })
 }
 
 
@@ -144,11 +145,13 @@ function jdZoomOutEvent(e) {
 
 function jdZoomEnabler(element) {
   element.addEventListener("click", e => {
+    e.preventDefault()
     if (element.classList.contains("on-zoom-in")) {
       jdZoomOut(element)
     } 
     else {
       if (e.target.hasAttribute('jd-zoom-image')) {
+        element.jdZoomActive = true
         element.classList.add("on-zoom-in")
         // Calculations here, assuming the DOM won't change size
         // while the image is being zoomed-in.
@@ -157,7 +160,6 @@ function jdZoomEnabler(element) {
         // to make it dynamic relative to the DOM,
         // calculateConstants should be executed inside moveImg()
         element.imgConstants = calculateConstants(element)
-        element.jdZoomActive = true
 
         // initial animation from click and then the event
         // will handle it
