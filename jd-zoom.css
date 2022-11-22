@@ -16,7 +16,16 @@ img[jd-zoom-image] {
   transition: .2s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
+
+/*
+  will-change shouldn't be used on hover. Flickering image problems on browsers, 
+  particularly webkit-based ones. Also, very resource intensive in general.
+  Better to stay off from will-change or using it in the parent element, the most
+  ahead of time possible
+*/
+
+/*
 img[jd-zoom-image]:hover {
-  /* browser optimizations to get rid of possible stutters */
   will-change: transform;
 }
+*/
